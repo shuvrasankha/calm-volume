@@ -19,6 +19,9 @@ android {
 
     buildTypes {
         release {
+            // Debug key on purpose: this APK is for sideloading, and no private key lives in the repo
+            signingConfig = signingConfigs.getByName("debug")
+            isShrinkResources = true
             optimization {
                 enable = true
             }

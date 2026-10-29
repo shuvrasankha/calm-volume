@@ -49,10 +49,10 @@ Download `calm-volume.apk` from the [latest release](https://github.com/shuvrasa
 Needs JDK 17+ and the Android SDK (compileSdk 37).
 
 ```bash
-./gradlew assembleDebug
+./gradlew assembleRelease
 ```
 
-The APK is `app/build/outputs/apk/debug/app-debug.apk`. Checks: `./gradlew lint testDebugUnitTest`.
+The APK is `app/build/outputs/apk/release/app-release.apk` (`assembleDebug` gives a larger debug build). Checks: `./gradlew lint testDebugUnitTest`.
 
 ## Use it
 
@@ -75,7 +75,7 @@ Open **Calm Volume** from the launcher, turn **Reduce loud sounds** on and pick 
 - **Passthrough audio can't be processed.** With a soundbar or receiver using Dolby/DTS passthrough, the sound never goes through Android's mixer. Set the TV's audio output to **PCM / Stereo**.
 - **Apps with their own audio pipelines** (offload or tunneled playback) can bypass the effect.
 - **Notifications:** `POST_NOTIFICATIONS` is declared but not requested. The service runs without it; the status notification is just hidden.
-- The release APK is a debug build, signed with the debug key. Fine for sideloading, not for the Play Store.
+- The release APK is shrunk with R8 (about 1.7 MB) but signed with the debug key. Fine for sideloading, not for the Play Store.
 
 ## Turn debugging off afterwards
 
